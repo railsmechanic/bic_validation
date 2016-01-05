@@ -13,16 +13,16 @@ module BicValidation
     end
 
     def of_valid_format?
-      @code =~ format
+      !!(@code =~ format)
     end
 
     def has_valid_country_code?
-      country_codes.include? country
+      country_codes.include?(country)
     end
 
     def has_valid_location_code?
       # WTF? http://de.wikipedia.org/wiki/ISO_9362
-      location[0] =~ /[^01]/ && location[1] =~ /[^O]/
+      !!(location[0] =~ /[^01]/ && location[1] =~ /[^O]/)
     end
 
     def known?
